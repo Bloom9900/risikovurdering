@@ -5,69 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Risikovurdering - Generel Information</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      padding: 2rem;
-    }
-
-    .section {
-      margin-bottom: 3rem;
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .section-title {
-      font-size: 3rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-
-    .question {
-      margin-bottom: 2rem;
-    }
-
-    .question h3 {
-      margin: 0 0 0.5rem;
-    }
-
-    .question p {
-      font-size: 0.9rem;
-      color: #555;
-      margin-top: 0;
-    }
-
-    input[type="text"],
-    textarea {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    label {
-      display: block;
-      margin-top: 0.5rem;
-    }
-
-    .mail-button {
-      background-color: #007BFF;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 1rem;
-    }
-
-    .mail-button:hover {
-      background-color: #0056b3;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -490,55 +428,7 @@
 
     <button type="button" class="mail-button" onclick="downloadAnswers()">Download svar</button>
   </form>
-
-  <script>
-    function downloadAnswers() {
-      const form = document.getElementById("riskForm");
-      const formData = new FormData(form);
-      const data = {};
-      for (const [key, value] of formData.entries()) {
-        if (data.hasOwnProperty(key)) {
-          if (Array.isArray(data[key])) {
-            data[key].push(value);
-          } else {
-            data[key] = [data[key], value];
-          }
-        } else {
-          data[key] = value;
-        }
-      }
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "risikovurdering.json";
-      link.click();
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const q10Radios = document.querySelectorAll('input[name="q10"]');
-      const gdprSection = document.getElementById('gdpr-followup');
-
-      q10Radios.forEach(radio => {
-        radio.addEventListener('change', function () {
-          gdprSection.style.display = this.value === 'Ja' ? 'block' : 'none';
-        });
-      });
-
-      const emailLink = document.getElementById('emailLink');
-      const q1Input = document.querySelector('input[name="q1"]');
-
-      function updateEmailSubject() {
-        const systemName = q1Input.value.trim() || '[Systemnavn]';
-        emailLink.href =
-          'mailto:sos@slagelse.dk?subject=' +
-          encodeURIComponent(systemName) +
-          ' - Risikovurdering';
-      }
-
-      q1Input.addEventListener('input', updateEmailSubject);
-      updateEmailSubject();
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
