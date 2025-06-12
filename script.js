@@ -36,10 +36,8 @@
 
       function updateEmailSubject() {
         const systemName = q1Input.value.trim() || '[Systemnavn]';
-        emailLink.href =
-          'mailto:sos@slagelse.dk?subject=' +
-          encodeURIComponent(systemName) +
-          ' - Risikovurdering';
+        const subject = encodeURIComponent(`${systemName} - Risikovurdering`);
+        emailLink.href = `mailto:sos@slagelse.dk?subject=${subject}`;
       }
 
       q1Input.addEventListener('input', updateEmailSubject);
