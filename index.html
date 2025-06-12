@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Risikovurdering - Generel Information</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 2rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .question {
+      margin-bottom: 2rem;
+    }
+
+    .question h3 {
+      margin: 0 0 0.5rem;
+    }
+
+    .question p {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 0;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    label {
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    .mail-button {
+      background-color: #007BFF;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .mail-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Risikovurdering af IT-system</h1>
+  <p style="max-width: 800px; margin-bottom: 2rem;">
+    Denne formular hjælper dig med at vurdere risici i forbindelse med brugen af et IT-system.
+    Har du spørgsmål eller brug for hjælp, er du velkommen til at kontakte <strong>Jannich – IT-sikkerhed og compliance
+      konsulent</strong> på
+    <a href="mailto:support@example.com">support@example.com</a>.
+  </p>
+  <p style="max-width: 800px; margin-bottom: 2rem;">
+    Når du er færdig med at udfylde formularen, klik da på knappen nedenfor for at downloade dine svar. <br>
+    Åbn herefter <a href="mailto:sos@slagelse.dk?subject=[Systemnavn] - Risikovurdering">denne e-mail</a> og vedhæft den
+    downloadede fil manuelt.
+  </p>
+
+  <form id="riskForm">
+    <div class="section" id="generel-information">
+      <div class="section-title">Generel information</div>
+
+      <div class="question">
+        <h3>Navn på IT-system:</h3>
+        <input type="text" name="q1" />
+      </div>
+      <div class="question">
+        <h3>Systemejer:</h3>
+        <p>Navnet på den person, der har det overordnede ansvar for systemet i organisationen.</p>
+        <input type="text" name="q2" />
+      </div>
+      <div class="question">
+        <h3>Systemansvarlig:</h3>
+        <p>Navnet på den daglige ansvarlige for systemets drift og anvendelse.</p>
+        <input type="text" name="q3" />
+      </div>
+      <div class="question">
+        <h3>Navn på leverandøren af IT-systemet:</h3>
+        <input type="text" name="q4" />
+      </div>
+      <div class="question">
+        <h3>Detaljeret beskrivelse af system:</h3>
+        <p>Beskriv hvordan systemet fungerer teknisk og organisatorisk – f.eks. arkitektur, integrationer, datatyper og
+          evt. automatiseringer. Nævn også hvis det er en standardløsning eller et specialudviklet system.</p>
+        <textarea name="q5" rows="6"></textarea>
+      </div>
+      <div class="question">
+        <h3>Hvor opbevares data?</h3>
+        <p>Vælg den primære placering, hvor data opbevares. Hvis der både er on-premise og cloud, så vælg
+          <strong>Cloud</strong> og brug 'Andet' til at angive flere detaljer, hvis nødvendigt.
+        </p>
+        <label><input type="radio" name="q6" value="On premise"> On premise</label>
+        <label><input type="radio" name="q6" value="Cloud"> Cloud</label>
+        <label><input type="radio" name="q6" value="Hos leverandøren"> Hos leverandøren</label>
+        <label><input type="radio" name="q6" value="Tilgår kun data i andre it-systemer"> Tilgår kun data i andre
+          it-systemer</label>
+        <label>Andet: <input type="text" name="q6_other" placeholder="Angiv andet..." /></label>
+      </div>
+      <div class="question">
+        <h3>Kan systemet tilgås via internettet? (Uden for SK netværk)</h3>
+        <p>Angiv evt. URL eller adgangsvej, hvis systemet kan nås udefra – f.eks. fra hjemmearbejdsplads eller via
+          mobil.</p>
+        <input type="text" name="q7" placeholder="Indtast URL eller beskrivelse..." />
+      </div>
+      <div class="question">
+        <h3>Eventuelle bemærkninger:</h3>
+        <p>Her kan du tilføje alt andet, der er relevant, men som ikke passer ind i de øvrige spørgsmål.</p>
+        <textarea name="q8" rows="5"></textarea>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">GDPR</div>
+      <div class="question">
+        <h3>Behandler systemet persondata?</h3>
+        <label><input type="radio" name="q10" value="Ja"> Ja</label>
+        <label><input type="radio" name="q10" value="Nej"> Nej</label>
+        <label>Andet: <input type="text" name="q10_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+      </div>
+      <div id="gdpr-followup" style="display: none;">
+        <div class="question">
+          <h3>Hvilke personoplysninger behandles i systemet?</h3>
+          <p style="font-size: 0.9rem; color: #555;">Sæt kryds ved de typer af oplysninger, som systemet behandler. Du
+            kan vælge flere. Hvis du er i tvivl om, hvad der er personoplysninger, kan du læse mere på vores <a
+              href="https://intranet.eksempel.dk/persondata" target="_blank">intranetside om persondata</a>.</p>
+          <label><input type="checkbox" name="q11" value="Fornavn"> Fornavn</label>
+          <label><input type="checkbox" name="q11" value="Efternavn"> Efternavn</label>
+          <label><input type="checkbox" name="q11" value="Adresse"> Adresse</label>
+          <label><input type="checkbox" name="q11" value="Adresse (beskyttet)"> Adresse (beskyttet)</label>
+          <label><input type="checkbox" name="q11" value="Fødselsdato"> Fødselsdato</label>
+          <label><input type="checkbox" name="q11" value="CPR-nr."> CPR-nr.</label>
+          <label><input type="checkbox" name="q11" value="Helbredsoplysninger"> Helbredsoplysninger</label>
+          <label><input type="checkbox" name="q11" value="Strafbare forhold"> Strafbare forhold</label>
+          <label><input type="checkbox" name="q11" value="Betalingsoplysninger"> Betalingsoplysninger (kreditkort
+            mv.)</label>
+          <label><input type="checkbox" name="q11" value="Religiøs eller filosofisk overbevisning"> Religiøs eller
+            filosofisk overbevisning</label>
+          <label><input type="checkbox" name="q11" value="Seksuelle forhold"> Seksuelle forhold eller
+            orientering</label>
+          <label><input type="checkbox" name="q11" value="Fagforening"> Fagforeningsmæssigt tilhørsforhold</label>
+          <label><input type="checkbox" name="q11" value="Politisk overbevisning"> Politisk tilhørsforhold</label>
+          <label><input type="checkbox" name="q11" value="Race"> Race</label>
+          <label><input type="checkbox" name="q11" value="Etnicitet"> Etnicitet</label>
+          <label><input type="checkbox" name="q11" value="Lokationsdata"> Lokationsdata</label>
+          <label><input type="checkbox" name="q11" value="IP-adresse"> IP-adresse</label>
+          <label><input type="checkbox" name="q11" value="Genetiske eller biometriske data"> Genetiske eller biometriske
+            data</label>
+          <label><input type="checkbox" name="q11" value="Ansættelse"> Ansættelse, karriere, CV</label>
+          <label>Andet: <input type="text" name="q11_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+        </div>
+        <div class="question">
+          <h3>Hvilke grupper af personer behandles der data om?</h3>
+          <p style="font-size: 0.9rem; color: #555;">Angiv f.eks. borgere, medarbejdere, elever, mindreårige,
+            leverandører eller pårørende.</p>
+          <input type="text" name="q18" style="width: 100%;" />
+        </div>
+        <div class="question">
+          <h3>Er leverandørens sikkerhed og ansvar tydeligt aftalt i en databehandleraftale?</h3>
+          <p style="font-size: 0.9rem; color: #555;">En databehandleraftale beskriver leverandørens ansvar og krav til
+            sikkerhed ved behandling af persondata på vegne af organisationen.</p>
+          <label><input type="radio" name="q12" value="Ja, det er tydeligt beskrevet"> Ja, det er tydeligt
+            beskrevet</label>
+          <label><input type="radio" name="q12" value="Ja, men mangler enkelte detaljer"> Ja, men mangler enkelte
+            detaljer</label>
+          <label><input type="radio" name="q12" value="Nej"> Nej</label>
+          <label><input type="radio" name="q12" value="Ved ikke"> Ved ikke</label>
+        </div>
+        <div class="question">
+          <h3>Fører I tilsyn med jeres leverandør/databehandler?</h3>
+          <p style="font-size: 0.9rem; color: #555;">Et tilsyn kan være fx kontrolbesøg eller vurdering af leverandørens
+            sikkerhed. Det er en vigtig del af ansvaret som dataansvarlig.</p>
+          <label><input type="radio" name="q13" value="Ja, regelmæssigt"> Ja, regelmæssigt</label>
+          <label><input type="radio" name="q13" value="Ja, men ikke systematisk"> Ja, men ikke systematisk</label>
+          <label><input type="radio" name="q13" value="Nej"> Nej</label>
+          <label><input type="radio" name="q13" value="Ved ikke"> Ved ikke</label>
+          <label><input type="radio" name="q13" value="Ikke relevant"> Ikke relevant</label>
+        </div>
+        <div class="question">
+          <h3>Behandles persondata uden for EU/EØS (fx USA)?</h3>
+          <p style="font-size: 0.9rem; color: #555;">Det er vigtigt at vide, hvor data fysisk behandles, da der stilles
+            særlige krav til overførsel til usikre tredjelande.</p>
+          <label><input type="radio" name="q14" value="Nej"> Nej</label>
+          <label><input type="radio" name="q14" value="Ja, med nødvendige garantier"> Ja, med nødvendige
+            garantier</label>
+          <label><input type="radio" name="q14" value="Ja, men usikker på om garantier er på plads"> Ja, men usikker på
+            om garantier er på plads</label>
+          <label><input type="radio" name="q14" value="Ved ikke"> Ved ikke</label>
+        </div>
+        <div class="question">
+          <h3>Slettes persondata, når de ikke længere er nødvendige?</h3>
+          <p style="font-size: 0.9rem; color: #555;">Regelmæssig sletning er nødvendig for at overholde dataminimering
+            og undgå unødig opbevaring af persondata.</p>
+          <label><input type="radio" name="q15" value="Ja, automatisk"> Ja, automatisk</label>
+          <label><input type="radio" name="q15" value="Ja, manuelt"> Ja, manuelt</label>
+          <label><input type="radio" name="q15" value="Nej"> Nej</label>
+          <label><input type="radio" name="q15" value="Ved ikke"> Ved ikke</label>
+        </div>
+        <div class="question">
+          <h3>Kan systemet finde og udlevere persondata ved indsigt?</h3>
+          <p style="font-size: 0.9rem; color: #555;">Hvis en borger anmoder om indsigt i sine oplysninger, skal systemet
+            kunne hjælpe med at finde og udlevere relevante data.</p>
+          <label><input type="radio" name="q16" value="Ja"> Ja</label>
+          <label><input type="radio" name="q16" value="Nej"> Nej</label>
+          <label><input type="radio" name="q16" value="Ved ikke"> Ved ikke</label>
+        </div>
+        <div class="question">
+          <h3>Omtrent hvor mange personer ligger der oplysninger om i systemet?</h3>
+          <label><input type="radio" name="q17" value="Færre end 100"> Færre end 100</label>
+          <label><input type="radio" name="q17" value="100–999"> 100–999</label>
+          <label><input type="radio" name="q17" value="1.000–9.999"> 1.000–9.999</label>
+          <label><input type="radio" name="q17" value="10.000+"> 10.000 eller flere</label>
+          <label><input type="radio" name="q17" value="Ved ikke"> Ved ikke</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="section">
+      <div class="section-title">Brugere og adgang</div>
+
+      <div class="question">
+        <h3>Hvor mange brugere har adgang til systemet?</h3>
+        <p style="font-size: 0.9rem; color: #555;">Ca. antal personer med adgang – både interne og eksterne.</p>
+        <label><input type="radio" name="q19" value="1–10"> 1–10</label>
+        <label><input type="radio" name="q19" value="11–50"> 11–50</label>
+        <label><input type="radio" name="q19" value="51–200"> 51–200</label>
+        <label><input type="radio" name="q19" value="201+"> 201 eller flere</label>
+        <label>Andet: <input type="text" name="q19_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+      </div>
+
+      <div class="question">
+        <h3>Hvem anvender/kan se data i systemet?</h3>
+        <p style="font-size: 0.9rem; color: #555;">F.eks. medarbejdere, sagsbehandlere, eksterne konsulenter mv.</p>
+        <input type="text" name="q20" style="width: 100%;" />
+      </div>
+
+      <div class="question">
+        <h3>Er der krav om brug af stærke adgangskoder for at få adgang til systemet?</h3>
+        <p style="font-size: 0.9rem; color: #555;">Hvis du ikke kender de præcise krav, så tænk over dit eget password.
+          Overholder det reglerne for min. 15 karakterer?</p>
+        <label><input type="radio" name="q21" value="Ja"> Ja</label>
+        <label><input type="radio" name="q21" value="Nej"> Nej</label>
+        <label>Andet: <input type="text" name="q21_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+      </div>
+
+      <div class="question">
+        <h3>Er der en proces for regelmæssig gennemgang af brugerkonti, og sikres det, at adgangen tilbagekaldes, når
+          ansættelsen ophører?</h3>
+        <p style="font-size: 0.9rem; color: #555;">Regelmæssig gennemgang af brugerkonti hjælper med at sikre, at kun
+          relevante personer har adgang. Overvej om konti for tidligere ansatte slettes eller deaktiveres, og om der
+          foretages periodiske tjek af adgangsrettigheder.</p>
+        <label><input type="radio" name="q22" value="Ja"> Ja</label>
+        <label><input type="radio" name="q22" value="Nej"> Nej</label>
+        <label>Andet: <input type="text" name="q22_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+      </div>
+
+      <div class="question">
+        <h3>Er der forskellige adgangsniveauer baseret på brugernes roller og ansvar?</h3>
+        <p style="font-size: 0.9rem; color: #555;">Adgangsniveauer sikrer, at medarbejdere kun har adgang til de
+          oplysninger, de har brug for i deres funktion. Det reducerer risikoen for fejl og misbrug.</p>
+        <label><input type="radio" name="q23" value="Ja"> Ja</label>
+        <label><input type="radio" name="q23" value="Nej"> Nej</label>
+        <label>Andet: <input type="text" name="q23_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+      </div>
+
+      <div class="question">
+        <h3>Forhindrer systemet, at én person har fuld kontrol over vigtige processer som økonomiske transaktioner,
+          adgangsstyring eller systemændringer uden opsyn?</h3>
+        <p style="font-size: 0.9rem; color: #555;">Sagen om Britta Nielsen i Socialstyrelsen viste, hvor vigtigt det er
+          med kontrolmekanismer. Ingen enkeltperson bør kunne gennemføre væsentlige handlinger uden uafhængigt opsyn.
+        </p>
+        <label><input type="radio" name="q24" value="Ja"> Ja</label>
+        <label><input type="radio" name="q24" value="Nej"> Nej</label>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Styring og drift</div>
+
+      <div class="question">
+        <h3>Eksisterer der en opgørelse over alt hardware tilknyttet til systemet?</h3>
+        <p style="font-size: 0.9rem; color: #555;">F.eks. servere, netværksudstyr, backup-løsninger m.m.</p>
+        <label><input type="radio" name="q25" value="Ja"> Ja</label>
+        <label><input type="radio" name="q25" value="Nej"> Nej</label>
+        <label>Andet: <input type="text" name="q25_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+      </div>
+
+      <div class="question">
+        <h3>Hvor ofte foretages der sikkerhedskopier af systemdata?</h3>
+        <p style="font-size: 0.9rem; color: #555;">Angiv f.eks. dagligt, ugentligt eller månedligt, og om det sker
+          automatisk.</p>
+        <input type="text" name="q26" style="width: 100%;" />
+      </div>
+
+      <div class="question">
+        <h3>Er der en proces for gendannelse af data fra sikkerhedskopier?</h3>
+        <p style="font-size: 0.9rem; color: #555;">Beskriv om proceduren er testet og dokumenteret.</p>
+        <label><input type="radio" name="q27" value="Ja"> Ja</label>
+        <label><input type="radio" name="q27" value="Nej"> Nej</label>
+        <label>Andet: <input type="text" name="q27_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+      </div>
+
+      <div class="question">
+        <h3>Har databehandleraftalens bilag C de tilstrækkelige krav til driftsikkerhed?</h3>
+        <p style="font-size: 0.9rem; color: #555;">Bilag C i DBA'en bør stille krav til f.eks. oppetid, vedligehold og
+          hændelseshåndtering.</p>
+        <label><input type="radio" name="q28" value="Ja"> Ja</label>
+        <label><input type="radio" name="q28" value="Nej"> Nej</label>
+        <label>Andet: <input type="text" name="q28_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+      </div>
+
+      <div class="question">
+        <h3>Er medarbejdere blevet trænet i at genkende og rapportere sikkerhedshændelser, herunder både tekniske angreb
+          (f.eks. hackingforsøg) og GDPR-relevante hændelser (f.eks. databrud)</h3>
+        <p style="font-size: 0.9rem; color: #555;">Træning kan inkludere awareness-kampagner, e-læring og regelmæssige
+          opdateringer.</p>
+        <label><input type="radio" name="q29" value="Ja"> Ja</label>
+        <label><input type="radio" name="q29" value="Nej"> Nej</label>
+        <label>Andet: <input type="text" name="q29_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+      </div>
+
+      <div class="question">
+        <h3>Kan systemet opleve kapacitetsproblemer, som påvirker hastigheden, og overholder det i så fald sin SLA
+          (Service Level Agreement)?</h3>
+        <p style="font-size: 0.9rem; color: #555;">En SLA kan indeholde krav om svartid, tilgængelighed og responstid
+          ved fejl.</p>
+        <label><input type="radio" name="q30" value="Ja, og systemet overholder SLA"> Ja, og systemet overholder
+          SLA</label>
+        <label><input type="radio" name="q30" value="Ja, men SLA overholdes ikke altid"> Ja, men SLA overholdes ikke
+          altid</label>
+        <label><input type="radio" name="q30" value="Nej, der er ingen kapacitetsproblemer"> Nej, der er ingen
+          kapacitetsproblemer</label>
+        <label>Andet: <input type="text" name="q30_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+      </div>
+
+      <div class="question">
+        <h3>Er systemet designet på en måde, der gør det nemt at lave fejl (f.eks. fejlforsendelser)?</h3>
+        <p style="font-size: 0.9rem; color: #555;">Overvej om brugergrænsefladen understøtter korrekt brug og reducerer
+          risiko for menneskelige fejl.</p>
+        <label><input type="radio" name="q31" value="Nej, det er designet med brugervenlighed og sikkerhed for øje">
+          Nej, det er designet med brugervenlighed og sikkerhed for øje</label>
+        <label><input type="radio" name="q31" value="Ja, risiko for brugerfejl er til stede"> Ja, risiko for brugerfejl
+          er til stede</label>
+        <label>Andet: <input type="text" name="q31_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Netværkssikkerhed</div>
+
+      <div class="question">
+        <h3>Hvordan krypteres data i lagring og i transport? (Læs DBA)</h3>
+        <p style="font-size: 0.9rem; color: #555;">Angiv f.eks. om der bruges TLS, HTTPS, krypterede diske eller
+          lignende. Hvis du er i tvivl, spørg din IT-leverandør eller se i databehandleraftalen.</p>
+        <input type="text" name="q32" style="width: 100%;" />
+      </div>
+
+      <div class="question">
+        <h3>Hvis relevant hvor opbevares krypteringsnøglen?</h3>
+        <p style="font-size: 0.9rem; color: #555;">Kun relevant hvis der anvendes kryptering. Angiv om nøglen opbevares
+          sikkert og adskilt.</p>
+        <input type="text" name="q33" style="width: 100%;" />
+      </div>
+
+      <div class="question">
+        <h3>Overføres data over sikre kanaler (f.eks. HTTPS, VPN, SFTP, TLS)?</h3>
+        <p style="font-size: 0.9rem; color: #555;">Er data sikret under overførsel mellem bruger og system eller mellem
+          systemer?</p>
+        <input type="text" name="q34" style="width: 100%;" />
+      </div>
+    </div>
+
+    <div class="section">
+  <div class="section-title">Afhængigheder og beredskab</div>
+
+  <div class="question">
+    <h3>Er systemet afhængigt af andre systemer for at fungere?</h3>
+    <input type="text" name="q35" style="width: 100%;" />
+  </div>
+
+  <div class="question">
+    <h3>Er systemet afhængigt af brugere? Hvor godt ville systemet fungere uden x person?</h3>
+    <p style="font-size: 0.9rem; color: #555;">Angiv om systemet kræver særlige nøglepersoner for at fungere. Er viden dokumenteret?</p>
+    <input type="text" name="q36" style="width: 100%;" />
+  </div>
+
+  <div class="question">
+    <h3>AD = Active Directory. Bruges det til login, adgangsstyring osv.?</h3>
+    <label><input type="radio" name="q37" value="Ja"> Ja</label><br>
+    <label><input type="radio" name="q37" value="Nej"> Nej</label><br>
+    <label>Andet: <input type="text" name="q37_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+  </div>
+
+  <div class="question">
+    <h3>Eksisterer der en dokumenteret nødplan, der inkluderer dette system?</h3>
+    <label><input type="radio" name="q38" value="Ja"> Ja</label><br>
+    <label><input type="radio" name="q38" value="Nej"> Nej</label><br>
+    <label>Andet: <input type="text" name="q38_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+  </div>
+
+  <div class="question">
+    <h3>Indeholder nødplanen scenarier for datatab, systemnedbrud og naturkatastrofer?</h3>
+    <label><input type="radio" name="q39" value="Ja"> Ja</label><br>
+    <label><input type="radio" name="q39" value="Nej"> Nej</label><br>
+    <label>Andet: <input type="text" name="q39_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+  </div>
+
+  <div class="question">
+    <h3>Hvor ofte testes nødplanen?</h3>
+    <input type="text" name="q40" style="width: 100%;" />
+  </div>
+
+  <div class="question">
+    <h3>Er der etableret alternative kommunikationskanaler i tilfælde af systemfejl?</h3>
+    <p style="font-size: 0.9rem; color: #555;">Overvej hvordan I kommunikerer, hvis både InSlag og Outlook er utilgængelige. Er der f.eks. aftalt brug af SMS-kæder, mobiltelefoner, nødtelefoner eller anden beredskabskommunikation?</p>
+    <input type="text" name="q41" style="width: 100%;" />
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Fysisk og miljømæssig sikkerhed</div>
+
+  <div class="question">
+    <h3>Er systemets fysiske placering sikret?</h3>
+    <p style="font-size: 0.9rem; color: #555;">F.eks. serverrum med adgangskontrol, låste kontorer eller andre tiltag, der begrænser fysisk adgang til systemet.</p>
+    <label><input type="radio" name="q42" value="Ja"> Ja</label><br>
+    <label><input type="radio" name="q42" value="Delvist"> Delvist</label><br>
+    <label><input type="radio" name="q42" value="Nej"> Nej</label><br>
+    <label>Andet: <input type="text" name="q42_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+  </div>
+
+  <div class="question">
+    <h3>Er medarbejdernes arbejdsstationer placeret, så uvedkommende ikke kan se følsomme oplysninger?</h3>
+    <p style="font-size: 0.9rem; color: #555;">Overvej placering i åbne kontorlandskaber, brug af skærmfiltre og fysisk afskærmning.</p>
+    <label><input type="radio" name="q43" value="Ja"> Ja</label><br>
+    <label><input type="radio" name="q43" value="Delvist"> Delvist</label><br>
+    <label><input type="radio" name="q43" value="Nej"> Nej</label><br>
+    <label>Andet: <input type="text" name="q43_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+  </div>
+
+  <div class="question">
+    <h3>Bliver computere og skærme låst, når medarbejdere forlader deres plads?</h3>
+    <label><input type="radio" name="q44" value="Ja"> Ja</label><br>
+    <label><input type="radio" name="q44" value="Delvist"> Delvist</label><br>
+    <label><input type="radio" name="q44" value="Nej"> Nej</label><br>
+    <label>Andet: <input type="text" name="q44_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+  </div>
+
+  <div class="question">
+    <h3>Bliver følsomme dokumenter og noter opbevaret forsvarligt, og ryddes skriveborde ved arbejdsdagens afslutning?</h3>
+    <p style="font-size: 0.9rem; color: #555;">Tænk på skuffer, skabe, arkiver og papirkurve. Overvej også retningslinjer for "clean desk policy".</p>
+    <label><input type="radio" name="q45" value="Ja"> Ja</label><br>
+    <label><input type="radio" name="q45" value="Delvist"> Delvist</label><br>
+    <label><input type="radio" name="q45" value="Nej"> Nej</label><br>
+    <label>Andet: <input type="text" name="q45_other" placeholder="Angiv andet..." style="width: 50%;" /></label>
+  </div>
+</div>
+
+
+
+
+
+    <button type="button" class="mail-button" onclick="downloadAnswers()">Download svar</button>
+  </form>
+
+  <script>
+    function downloadAnswers() {
+      const form = document.getElementById("riskForm");
+      const formData = new FormData(form);
+      const data = {};
+      for (const [key, value] of formData.entries()) {
+        data[key] = value;
+      }
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "risikovurdering.json";
+      link.click();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const q10Radios = document.querySelectorAll('input[name="q10"]');
+      const gdprSection = document.getElementById('gdpr-followup');
+
+      q10Radios.forEach(radio => {
+        radio.addEventListener('change', function () {
+          gdprSection.style.display = this.value === 'Ja' ? 'block' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
