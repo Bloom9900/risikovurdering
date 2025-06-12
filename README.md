@@ -6,8 +6,9 @@ Dette repository indeholder en simpel HTML-formular til risikovurdering af IT-sy
 
 1. Åbn `index.html` i din browser.
 2. Udfyld felterne med oplysninger om dit IT-system.
-3. Klik på **Download svar** for at hente en fil med dine besvarelser.
-4. Vedlæg den downloadede fil i en e-mail til de relevante parter.
+3. Klik på **Vis svar** for at få vist en læsevenlig oversigt, som automatisk skjuler følsomme felter. Teksten kan kopieres direkte.
+4. Klik på **Download svar** for at hente alle besvarelser som en JSON-fil.
+5. Vedlæg den downloadede fil i en e-mail til de relevante parter.
 
 ## Krav
 
