@@ -80,7 +80,7 @@
   </p>
   <p style="max-width: 800px; margin-bottom: 2rem;">
     Når du er færdig med at udfylde formularen, klik da på knappen nedenfor for at downloade dine svar. <br>
-    Åbn herefter <a href="mailto:sos@slagelse.dk?subject=[Systemnavn] - Risikovurdering">denne e-mail</a> og vedhæft den
+    Åbn herefter <a id="emailLink" href="mailto:sos@slagelse.dk?subject=[Systemnavn] - Risikovurdering">denne e-mail</a> og vedhæft den
     downloadede fil manuelt.
   </p>
 
@@ -523,6 +523,20 @@
           gdprSection.style.display = this.value === 'Ja' ? 'block' : 'none';
         });
       });
+
+      const emailLink = document.getElementById('emailLink');
+      const q1Input = document.querySelector('input[name="q1"]');
+
+      function updateEmailSubject() {
+        const systemName = q1Input.value.trim() || '[Systemnavn]';
+        emailLink.href =
+          'mailto:sos@slagelse.dk?subject=' +
+          encodeURIComponent(systemName) +
+          ' - Risikovurdering';
+      }
+
+      q1Input.addEventListener('input', updateEmailSubject);
+      updateEmailSubject();
     });
   </script>
 </body>
