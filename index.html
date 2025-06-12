@@ -497,7 +497,15 @@
       const formData = new FormData(form);
       const data = {};
       for (const [key, value] of formData.entries()) {
-        data[key] = value;
+        if (data.hasOwnProperty(key)) {
+          if (Array.isArray(data[key])) {
+            data[key].push(value);
+          } else {
+            data[key] = [data[key], value];
+          }
+        } else {
+          data[key] = value;
+        }
       }
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
       const link = document.createElement("a");
