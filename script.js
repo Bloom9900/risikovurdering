@@ -3,7 +3,15 @@
       const formData = new FormData(form);
       const data = {};
       for (const [key, value] of formData.entries()) {
-        data[key] = value;
+        if (data.hasOwnProperty(key)) {
+          if (Array.isArray(data[key])) {
+            data[key].push(value);
+          } else {
+            data[key] = [data[key], value];
+          }
+        } else {
+          data[key] = value;
+        }
       }
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
       const link = document.createElement("a");
@@ -22,3 +30,17 @@
         });
       });
     });
+
+    const emailLink = document.getElementById('emailLink');
+    const q1Input = document.querySelector('input[name="q1"]');
+
+      function updateEmailSubject() {
+        const systemName = q1Input.value.trim() || '[Systemnavn]';
+        emailLink.href =
+          'mailto:sos@slagelse.dk?subject=' +
+          encodeURIComponent(systemName) +
+          ' - Risikovurdering';
+      }
+
+      q1Input.addEventListener('input', updateEmailSubject);
+      updateEmailSubject();
